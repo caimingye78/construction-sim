@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Construction Simulation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #1a1a2e; font-family: 'Segoe UI', system-ui, sans-serif; }
+    canvas { display: block; }
+    #ui-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 10;
+    }
+    #hud {
+      position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      padding: 12px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+      color: #fff; text-align: center; min-width: 320px;
+    }
+    #hud h2 { font-size: 13px; font-weight: 600; color: #64ffda; margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+    #hud .phase { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    #hud .progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 6px; }
+    #hud .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.5s; }
+    #hud .progress-dot.active { background: #64ffda; box-shadow: 0 0 8px #64ffda80; }
+    #hud .progress-dot.done { background: #00c853; }
+    #hud .stats { font-size: 12px; color: rgba(255,255,255,0.6); }
+    #hud .stats span { color: #fff; font-weight: 600; }
+    #status-msg {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      padding: 8px 20px; border-radius: 8px; color: #fff;
+      font-size: 14px; border: 1px solid rgba(255,255,255,0.08);
+      transition: opacity 0.4s;
+    }
+    #controls-hint {
+      position: absolute; bottom: 80px; right: 20px;
+      color: rgba(255,255,255,0.3); font-size: 11px;
+      text-align: right; line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div id="ui-overlay">
+    <div id="hud">
+      <h2>🏗️ Autonomous Construction</h2>
+      <div class="phase" id="phase-text">Initializing...</div>
+      <div class="progress" id="progress-dots"></div>
+      <div class="stats" id="stats-text">Components: <span id="comp-count">0</span> | Validated: <span id="valid-count">0</span> | Floor: <span id="floor-num">0</span>/5</div>
+    </div>
+    <div id="status-msg">Starting construction simulation...</div>
+    <div id="controls-hint">🖱 Drag to orbit · Scroll to zoom</div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
