@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 export default defineConfig({
-  root: '.',
-  server: { port: 5173, open: true }
+  base: '/construction-sim/',
+  build: { outDir: 'dist' },
+  server: { port: 5173 }
 });
